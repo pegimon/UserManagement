@@ -1,10 +1,11 @@
 const {config, sql} = require('../database');
+const environment = require('../config');
 const bycrypt = require('bcrypt');
 
 class Users {
     async create(user) {
         const pool = await sql.connect(config);
-        const hash = await bycrypt.hash(user.password, 10);
+        const hash = await bycrypt.hash(`${user.password}${environment.BYCRYPT_PEPPER}` , 10);
         const result = await pool.request()
             .input('username', sql.NVarChar, user.username)
             .input('password', sql.NVarChar, hash)

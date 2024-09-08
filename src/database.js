@@ -1,11 +1,11 @@
 const sql = require('mssql');
 const environment = require('./config');
 const config = {
-    server: 'localhost',
-    database: 'User_Management',
-    user: 'sa',
-    password: 'root@123',
-    port: 1435,
+    server: environment.DB_HOST,
+    database: environment.DB_NAME,
+    user: environment.DB_USER,
+    password: environment.DB_PASSWORD,
+    port: parseInt(environment.DB_PORT),
     options: {
         encrypt: false,
         trustServerCertificate: true

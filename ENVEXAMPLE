@@ -1,0 +1,15 @@
+#this is only example values use your own secrets
+#mandatory fields
+JWT_SECRET='secret'
+BYCRYPT_SALT=10
+BYCRYPT_PEPPER='secret'
+
+#optional fields
+PORT=3000
+NODE_ENV='development'
+DB_HOST='localhost'
+DB_USER='sa'
+DB_PASSWORD='root@123'
+DB_NAME='User_Management'
+DB_TEST_NAME='User_Management_Test'
+DB_PORT=1435

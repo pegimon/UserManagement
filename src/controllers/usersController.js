@@ -9,6 +9,10 @@ exports.CreateUser = async (req, res) => {
         if (!username || !email || !password) {
             return res.status(400).json({ error: "username, email and password are required" });
         }
+        const userExists = await Users.findByUsername(username) // check for preventing account takeover
+        if(userExists) {
+            return res.status(400).json({error: "username already exists!"});
+        }
         const user = await Users.create({ username, email, password });
         res.status(201).json(user);
     } catch (error) {
@@ -26,7 +30,7 @@ exports.Login = async (req, res) => {
         if (!user) {
             return res.status(401).json({ error: "Invalid username or password" });
         }
-        const isValid = await bcrypt.compare(password, user.password);
+        const isValid = await bcrypt.compare(`${password}${config.BYCRYPT_PEPPER}`, user.password);
         if (!isValid) {
             return res.status(401).json({ error: "Invalid username or password" });
         }
@@ -40,7 +44,8 @@ exports.Login = async (req, res) => {
 exports.GetProfile = async (req, res) => {
     try {
         const user = await Users.findByUsername(req.user.username);
-        res.json(user);
+        const { password, ...rest } = user;
+        res.json(rest);
     } catch (error) {
         res.status(500).json({ error: error.message });
     }
@@ -49,7 +54,8 @@ exports.GetProfile = async (req, res) => {
 exports.getUserById = async (req, res) => {
     try {
         const user = await Users.findById(req.params.id);
-        res.json(user);
+        const { password, ...rest } = user;
+        res.json(rest);
     } catch (error) {
         res.status(500).json({ error: error.message });
     }

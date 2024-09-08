@@ -4,13 +4,15 @@ dotenv.config();
 
 const {
     PORT = 3000,
-    JWT_SECRET,
+    JWT_SECRET = 'secret',
     NODE_ENV = 'development',
-    BYCRYPT_SALT,
+    BYCRYPT_SALT = 10,
+    BYCRYPT_PEPPER = 'secret',
     DB_HOST = 'localhost',
     DB_USER = 'sa',
     DB_PASSWORD = 'root@123',
     DB_NAME = 'User_Management',
+    DB_TEST_NAME = 'User_Management_Test',
     DB_PORT = 1435,
 } = process.env;
 
@@ -19,9 +21,10 @@ module.exports = {
     JWT_SECRET,
     NODE_ENV,
     BYCRYPT_SALT,
+    BYCRYPT_PEPPER,
     DB_HOST,
     DB_USER,
     DB_PASSWORD,
-    DB_NAME,
+    DB_NAME: NODE_ENV === 'test' ? DB_TEST_NAME : DB_NAME,
     DB_PORT,
 };
