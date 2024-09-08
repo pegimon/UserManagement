@@ -5,13 +5,36 @@ services:
     image: mcr.microsoft.com/mssql/server:2022-latest
     container_name: sql_server
     ports:
-      - "1435:1433" # mapped 1433 to 1434
+      - "1435:1433"
     environment:
       - ACCEPT_EULA=Y
-      - SA_PASSWORD=YourStrongPassword123!
+      - SA_PASSWORD=root@123
       - MSSQL_PID=Developer
     volumes:
       - mssql_data:/var/opt/mssql
+
+  nodeapp:
+    build: .
+    container_name: node_app
+    ports:
+      - "3000:3000"
+    environment:
+      - NODE_ENV=development
+    depends_on:
+      - mssql
+    command: npm start
+
+  test:
+    build: .
+    container_name: test_runner
+    environment:
+      - NODE_ENV=test
+    depends_on:
+      - mssql
+    command: >
+      sh -c "npm run migrate up &&
+      npm test &&
+      npm run migrate down"
 
 volumes:
   mssql_data:
