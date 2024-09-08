@@ -5,7 +5,7 @@ services:
     image: mcr.microsoft.com/mssql/server:2022-latest
     container_name: sql_server
     ports:
-      - "1435:1433" # mapped 1433 to 1434
+      - "1435:1433" # mapped 1433 to 1435
     environment:
       - ACCEPT_EULA=Y
       - SA_PASSWORD=YourStrongPassword123!
