@@ -88,4 +88,9 @@ describe('user endpoint test', () => {
         const response = await request.post('/api/users/login').send({username: 'testuser', password: 'testPassword1'});
         expect(response.status).toBe(401);
     });
+
+    it('should not login with missing data', async () => {
+        const response = await request.post('/api/users/login').send({username: 'testuser'});
+        expect(response.status).toBe(400);
+    });
 });
