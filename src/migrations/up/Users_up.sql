@@ -1,5 +1,3 @@
-USE User_Management;
-
 IF NOT EXISTS (SELECT * FROM sysobjects WHERE name = N'Users' AND xtype = 'U')
 BEGIN
     CREATE TABLE Users (

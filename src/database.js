@@ -1,4 +1,5 @@
 const sql = require('mssql');
+const environment = require('./config');
 const config = {
     server: 'localhost',
     database: 'User_Management',
