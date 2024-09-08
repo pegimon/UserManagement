@@ -11,5 +11,7 @@ app.get("/status", function (req, res) {
 
 app.use('/api', routes);
 app.listen(config.PORT, function () {
-  console.log("Server is running on Port 3000");
+  console.log(`Server is running on Port ${config.PORT}`);
 });
+
+module.exports = app;

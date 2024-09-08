@@ -17,7 +17,7 @@ const {
 } = process.env;
 
 module.exports = {
-    PORT,
+    PORT: NODE_ENV === 'development' ? PORT : 3001,
     JWT_SECRET,
     NODE_ENV,
     BYCRYPT_SALT,
@@ -25,6 +25,6 @@ module.exports = {
     DB_HOST,
     DB_USER,
     DB_PASSWORD,
-    DB_NAME: NODE_ENV === 'test' ? DB_TEST_NAME : DB_NAME,
+    DB_NAME: NODE_ENV === 'development' ? DB_NAME : DB_TEST_NAME,
     DB_PORT,
 };

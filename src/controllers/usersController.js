@@ -57,6 +57,6 @@ exports.getUserById = async (req, res) => {
         const { password, ...rest } = user;
         res.json(rest);
     } catch (error) {
-        res.status(500).json({ error: error.message });
+        res.status(404).json({ error: error.message });
     }
 }
