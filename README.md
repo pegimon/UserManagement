@@ -8,7 +8,7 @@ you will find an ENVEXAMPLE file including the environment variable template if 
 if you don't have mssql installed in your device you can run `docker-compose up -d` this will pull and create the mssql image.
 
 then you will have to run \
-`docker exec -it sql_server /opt/mssql-tools18/bin/sqlcmd -S localhost -U sa -P root@123 -Q \"CREATE DATABASE User_Management;\" && docker exec -it sql_server /opt/mssql-tools18/bin/sqlcmd -S localhost -U sa -P root@123 -Q \"CREATE DATABASE User_Management_Test;\"` \
+`docker exec -it sql_server /opt/mssql-tools18/bin/sqlcmd -S localhost -U sa -P root@123 -Q "CREATE DATABASE User_Management;" && docker exec -it sql_server /opt/mssql-tools18/bin/sqlcmd -S localhost -U sa -P root@123 -Q "CREATE DATABASE User_Management_Test;"` \
 to create both `User_Management and User_Management_Test tables`.
 
 ### option 2: use your local mssql
