@@ -2,7 +2,7 @@
 
 ## How to run project
 
-you will find an ENVEXAMPLE file including the environment variable template if you want to put your own unique values just make .env file and put some variables like the template but every variable has a default value in the config file.
+you will find an ENVEXAMPLE file including the environment variable template if you want to put your own unique values just make .env file and put some variables like the template but every variable has a default value in the config file to prevent any errors if you don't assign any variable.
 
 ### option 1: run mssql using docker
 if you don't have mssql installed in your device you can run `docker-compose up -d` this will pull and create the mssql image.
